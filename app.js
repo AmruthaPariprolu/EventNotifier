@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const otpStorage = new Map();
 const registrationDataStorage = new Map(); // Temporary storage for registration data
+const { checkAndSendNotifications } = require("./noticificationService"); // Import the function
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,6 +27,12 @@ app.use(express.static(path.join(__dirname, "../client")));
 app.use(cors({ origin: "http://localhost:3000" })); // Update this to match your frontend URL
 
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+
+// Schedule checkAndSendNotifications to run every minute
+setInterval(checkAndSendNotifications, 60 * 1000); // Run every minute
+
+// Rest of your code...// Run every minute
+
 
 // Home route
 app.get("/", (req, res) => {

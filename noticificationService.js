@@ -52,3 +52,6 @@ const checkAndSendNotifications = async () => {
         console.error("❌ Error checking notifications:", error.message);
     }
 };
+
+// Export the function
+module.exports = { checkAndSendNotifications };
