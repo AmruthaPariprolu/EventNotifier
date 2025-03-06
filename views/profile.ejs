@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="max-w-4xl mx-auto my-10 p-6 bg-gray-800 shadow-lg rounded-lg">
+        <div class="flex justify-between items-center mb-5">
+            <h3 class="text-3xl text-blue-400">Hello, <%= user.username %> 👋</h3>
+            <a class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" href="/logout">Logout</a>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-2">Your Profile</h2>
+            <p><strong>Name:</strong> <%= user.name %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Phone Number:</strong> <%= user.phone %></p>
+        </div>
+
+        <hr class="my-6 border-gray-600">
+
+        <div class="mb-8">
+            <h3 class="text-xl mb-5">Your Hackathons</h3>
+
+            <% if (user.events && user.events.length > 0) { %>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <% user.events.forEach(function(hackathon) { %>
+                        <div class="p-4 bg-gray-700 border border-gray-600 rounded-md shadow-md">
+                            <h4 class="text-2xl text-pink-400"><%= hackathon.name %></h4>
+                            <p class="text-gray-400">📅 <%= new Date(hackathon.date).toDateString() %></p>
+                            <p class="text-gray-400">🕒 <%= hackathon.time %></p>
+                            <p class="text-gray-300 mt-2"><%= hackathon.description %></p>
+                            <div class="mt-4 flex space-x-2">
+                                <!-- Update Button -->
+                                <a href="/update-hackathon/<%= hackathon._id %>" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded">
+                                    Update
+                                </a>
+                                <!-- Delete Button -->
+                                <form action="/delete-hackathon/<%= hackathon._id %>" method="POST" class="inline">
+                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <p class="text-gray-400">You haven't created any hackathons yet.</p>
+            <% } %>
+        </div>
+
+        <hr class="my-6 border-gray-600">
+
+        <div class="text-center">
+            <a href="/create-hackathon" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded">
+                ➕ Create a New Hackathon
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

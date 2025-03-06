@@ -1,0 +1,54 @@
+<script>
+    async function sendOTP() {
+        const phone = document.getElementById("phone").value.trim();
+        if (!phone) {
+            alert("Please enter a phone number!");
+            return;
+        }
+    
+        try {
+            const response = await fetch("/send-otp", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ phone }),
+            });
+    
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Failed to send OTP.");
+            }
+    
+            alert(data.message);
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    }
+    
+    async function verifyOTP() {
+        const phone = document.getElementById("phone").value.trim();
+        const otp = document.getElementById("otp").value.trim();
+    
+        if (!phone || !otp) {
+            alert("Please enter both phone number and OTP!");
+            return;
+        }
+    
+        try {
+            const response = await fetch("/verify-otp", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ phone, otp }),
+            });
+    
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Invalid OTP. Try again!");
+            }
+    
+            alert(data.message);
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    }
+    </script>
+    

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Hackathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="max-w-4xl mx-auto my-10 p-6 bg-gray-800 shadow-lg rounded-lg">
+        <h2 class="text-3xl text-blue-400 mb-6">Update Hackathon</h2>
+
+        <form action="/update-hackathon/<%= hackathon._id %>" method="POST" class="space-y-4">
+            <!-- Hackathon Name -->
+            <div>
+                <label for="name" class="block text-gray-400">Hackathon Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="<%= hackathon.name %>"
+                    class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white"
+                    required
+                />
+            </div>
+
+            <!-- Hackathon Date -->
+            <div>
+                <label for="date" class="block text-gray-400">Date</label>
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="<%= hackathon.date.toISOString().split('T')[0] %>"
+                    class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white"
+                    required
+                />
+            </div>
+
+            <!-- Hackathon Time -->
+            <div>
+                <label for="time" class="block text-gray-400">Time</label>
+                <input
+                    type="time"
+                    id="time"
+                    name="time"
+                    value="<%= hackathon.time %>"
+                    class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white"
+                    required
+                />
+            </div>
+
+            <!-- Hackathon Description -->
+            <div>
+                <label for="description" class="block text-gray-400">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                    class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white"
+                    required
+                ><%= hackathon.description %></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button
+                    type="submit"
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded"
+                >
+                    Update Hackathon
+                </button>
+            </div>
+        </form>
+
+        <!-- Back to Profile Link -->
+        <div class="mt-6 text-center">
+            <a href="/profile" class="text-blue-400 hover:text-blue-300">Back to Profile</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Hackathon</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-1/3 bg-gray-800 p-6 rounded-lg">
+            <h3 class="text-3xl mb-5 text-center text-yellow-400">Edit Hackathon</h3>
+            <form action="/update/<%= hackathon._id %>" method="post">
+                <input class="w-full px-3 py-2 mb-3 bg-gray-700 border border-gray-600 rounded-md" type="text" name="name" value="<%= hackathon.name %>" required>
+                <input class="w-full px-3 py-2 mb-3 bg-gray-700 border border-gray-600 rounded-md" type="date" name="date" value="<%= hackathon.date.toISOString().split('T')[0] %>" required>
+                <input class="w-full px-3 py-2 mb-3 bg-gray-700 border border-gray-600 rounded-md" type="time" name="time" value="<%= hackathon.time.toISOString().split('T')[1].substring(0,5) %>" required>
+                <textarea class="w-full px-3 py-2 mb-3 bg-gray-700 border border-gray-600 rounded-md" name="description"><%= hackathon.description %></textarea>
+                <input class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 rounded" type="submit" value="Update Hackathon">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
