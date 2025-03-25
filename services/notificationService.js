@@ -1,7 +1,7 @@
 require("dotenv").config();
 const twilio = require("twilio");
 const mongoose = require("mongoose");
-const Hackathon = require("./models/post.models");
+const Hackathon = require("../models/post.models");
 
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 

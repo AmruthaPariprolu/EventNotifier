@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(`mongodb://127.0.0.1:27017/twilioOtp`, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -23,13 +23,18 @@ db.on("disconnected", () => {
 });
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, required: true,  trim: true },
-    age: { type: Number, min: 0 },
-    email: { type: String, required: true, unique: true, trim: true },
+    name: { type: String, required: true },
+    email: { type: String, required: true },
     password: { type: String, required: true },
-    name: { type: String, required: true, trim: true },
+    age: Number,
+    username: String,
     phone: { type: String, required: true },
+    notificationPreference: {
+        type: String,
+        enum: ["sms", "email", "both"], // Only allow these values
+        required: true,
+    },
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Hackathon" }]
-}, { timestamps: true });
+});
 
 module.exports = mongoose.model("User", userSchema);
