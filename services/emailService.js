@@ -17,7 +17,7 @@ async function sendEmail( to,hackathonDetails) {
             service: 'gmail',
             auth: {
                 type: 'OAuth2',
-                user: 'pamruthalaxmi@gmail.com', // Your Gmail address
+                user: process.env.EMAIL_USER, // Your Gmail address
                 clientId: clientId,
                 clientSecret: clientSecret,
                 refreshToken: refreshToken,

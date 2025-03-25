@@ -16,9 +16,9 @@ const sendSMS = async (to, message) => {
             from: process.env.TWILIO_PHONE_NUMBER,
             to: to,
         });
-        console.log("✅ SMS sent:", response.sid);
+        console.log("SMS sent:", response.sid);
     } catch (error) {
-        console.error("❌ Error sending SMS:", error.message);
+        console.error("Error sending SMS:", error.message);
     }
 };
 
@@ -38,9 +38,9 @@ const checkAndSendNotifications = async () => {
                     // Send SMS
                     try {
                         await sendSMS(notification.phone, message);
-                        console.log(`✅ SMS sent to ${notification.phone}`);
+                        console.log(`SMS sent to ${notification.phone}`);
                     } catch (error) {
-                        console.error(`❌ Error sending SMS to ${notification.phone}:`, error.message);
+                        console.error(`Error sending SMS to ${notification.phone}:`, error.message);
                     }
 
                     notification.isSent = true;  // Mark as sent
@@ -49,7 +49,7 @@ const checkAndSendNotifications = async () => {
             await hackathon.save();  // Save changes
         }
     } catch (error) {
-        console.error("❌ Error checking notifications:", error.message);
+        console.error("Error checking notifications:", error.message);
     }
 };
 
