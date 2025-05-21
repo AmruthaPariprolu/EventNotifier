@@ -1,27 +1,32 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const dbUrl = process.env.ATLASDB_URL;
+const DB_NAME = process.env.DB_NAME;
+
+// Connect to MongoDB
+mongoose.connect(dbUrl, {
+    dbName: DB_NAME
+}).then(() => {
+    console.log(`Connected to MongoDB: ${dbUrl}`);
+}).catch((err) => {
+    console.error(`Error connecting to MongoDB: ${err}`);
 });
 
-const db = mongoose.connection;
-
-// Check for connection success
-db.on("connected", () => {
-    console.log("MongoDB connected successfully");
+// Event listeners for connection status
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose connected to DB');
 });
 
-// Check for connection error
-db.on("error", (err) => {
-    console.error("MongoDB connection error:", err);
+mongoose.connection.on('error', (err) => {
+    console.error('Mongoose connection error:', err);
 });
 
-// Check for disconnection
-db.on("disconnected", () => {
-    console.log("MongoDB disconnected");
+mongoose.connection.on('disconnected', () => {
+    console.log('Mongoose disconnected');
 });
 
+// User Schema
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
@@ -31,7 +36,7 @@ const userSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     notificationPreference: {
         type: String,
-        enum: ["sms", "email", "both"], // Only allow these values
+        enum: ["sms", "email", "both"],
         required: true,
     },
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Hackathon" }]
