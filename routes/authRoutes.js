@@ -26,7 +26,7 @@ router.post("/login", async (req, res) => {
             return res.status(400).send("Invalid email or password");
         }
 
-        const token = jwt.sign({ email: user.email, userid: user._id }, "secret");
+        const token = jwt.sign({ email: user.email, userid: user._id }, process.env.JWT_SECRET);
         res.cookie("token", token, { httpOnly: true });
 
         res.redirect("/profile");
@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-    res.cookie("token", "", { expires: new Date(0) });
+    res.clearCookie("token");
     res.redirect("/login");
 });
 
