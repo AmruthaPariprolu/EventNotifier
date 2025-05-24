@@ -27,7 +27,7 @@ router.post("/login", async (req, res) => {
         }
 
         const token = jwt.sign({ email: user.email, userid: user._id }, process.env.JWT_SECRET);
-        res.cookie("token", token, { httpOnly: true });
+        res.cookie("token", token, { httpOnly: true }); //This cookie cannot be accessed by JavaScript running in the browser.
 
         res.redirect("/profile");
     } catch (err) {

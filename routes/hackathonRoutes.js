@@ -111,7 +111,14 @@ router.post('/update-hackathon/:id', isLoggedIn, async (req, res) => {
 
         const updatedHackathon = await hackathonModel.findByIdAndUpdate(
             req.params.id,
-            { name, date: eventDateTime, time, description },
+            {
+                name,
+                date: eventDateTime,
+                time,
+                description,
+                smsNotificationTime,  // Add this
+                emailNotificationTime // Add this
+            },
             { new: true }
         );
 
