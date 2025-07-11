@@ -1,32 +1,32 @@
 {
  "engines": {
-    "node":"20.16.0"
-  },
-  "name": "minipro",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.3",
-    "cookie-parser": "^1.4.7",
-    "corn": "^0.0.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "express-session": "^1.18.1",
-    "googleapis": "^146.0.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.1",
-    "node-cron": "^3.0.3",
-    "nodemailer": "^6.10.0",
-    "twilio": "^5.4.5"
-  }
+  "node": "20.16.0"
+ },
+ "name": "minipro",
+ "version": "1.0.0",
+ "main": "index.js",
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "keywords": [],
+ "author": "",
+ "license": "ISC",
+ "description": "",
+ "dependencies": {
+  "bcrypt": "^5.1.1",
+  "body-parser": "^1.20.3",
+  "cookie-parser": "^1.4.7",
+  "corn": "^0.0.1",
+  "cors": "^2.8.5",
+  "dotenv": "^16.4.7",
+  "ejs": "^3.1.10",
+  "express": "^4.21.2",
+  "express-session": "^1.18.1",
+  "googleapis": "^146.0.0",
+  "jsonwebtoken": "^9.0.2",
+  "mongoose": "^8.10.1",
+  "node-cron": "^3.0.3",
+  "nodemailer": "^6.10.0",
+  "twilio": "^5.4.5"
+ }
 }
