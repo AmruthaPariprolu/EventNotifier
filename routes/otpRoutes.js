@@ -83,8 +83,7 @@ router.post("/verify-otp", async (req, res) => {
                 notificationPreference, // Include notificationPreference
             });
 
-            let token = jwt.sign({ email: newUser.email, userid: newUser._id }, process.env.JWT_SECRET);
-            res.cookie("token", token, { httpOnly: true });
+        
 
             registrationDataStorage.delete(phone);
 
